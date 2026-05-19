@@ -11,7 +11,7 @@ contributions:            # 팀원별 기여도 (합계 100%)
     role: "담당 역할"
     tasks: "구체적으로 수행한 작업"
     percentage: 25
-  - name: "학번_이름2"
+  - name: "20251739_이지원"
     role: "담당 역할"
     tasks: "구체적으로 수행한 작업"
     percentage: 25
