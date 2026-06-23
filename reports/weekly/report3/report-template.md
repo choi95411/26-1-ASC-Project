@@ -17,7 +17,7 @@ contributions:            # 팀원별 기여도 (합계 100%)
     percentage: 25
   - name: "20243303_최지우"
     role: "동적 분석"
-    tasks: "구체적으로 수행한 작업"
+    tasks: "디버깅 및 메모리 분석 방법 파악"
     percentage: 25
   - name: "학번_이름4"
     role: "담당 역할"
