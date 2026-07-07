@@ -3,7 +3,7 @@ project_name: "프로젝트명"
 quad_name: "A조"
 members: ["학번_이름1", "20251739_이지원", "학번_이름3", "학번_이름4"]
 report_number: 1          # 격주 보고 회차 (1~8)
-date: "2026-04-01"
+date: "2026-07-07"
 status: "진행 중"          # 시작 전 / 진행 중 / 보류 / 완료
 cl_level: "CL1"           # 쿼드 팀 CL 등급 (CL1 / CL2 / CL3 / CL4)
 contributions:            # 팀원별 기여도 (합계 100%)
