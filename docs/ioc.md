@@ -13,8 +13,8 @@
 | 항목 | 상세 정보 / 값 | 비고 |
 | :--- | :--- | :--- |
 | Target OS | Windows (x86-64 / PE32+) | 64-bit Executable |
-| MD5 Hash | `(분석 대상 샘플 MD5 해시값)` | 바이너리 고유 식별자 |
-| SHA-256 Hash | `(분석 대상 샘플 SHA-256 해시값)` | 무결성 검증 및 샘플 특정 |
+| MD5 Hash | `TBD` | 바이너리 고유 식별자 |
+| SHA-256 Hash | `TBD` | 무결성 검증 및 샘플 특정 |
 | Encrypted Extension | `.rhysida` | 암호화 완료 후 변경되는 확장자 |
 | Ransom Note File | `Rhysida-ReadMe.txt` (또는 `.html`) | 각 디렉토리에 생성되는 랜섬노트 |
 
@@ -24,7 +24,7 @@
 
 ### 하드코딩 뮤텍스 (Mutex)
 Rhysida 바이너리는 중복 실행을 방지하기 위해 정적 코드 내에 특정 뮤텍스 문자열을 포함함.
-* Mutex Name: `(바이너리 정적 추출 뮤텍스명)`
+* Mutex Name: `TBD`
 * 관련 API: `CreateMutexW`
 
 ### 감염 제외 대상 (Exclusion Targets)
