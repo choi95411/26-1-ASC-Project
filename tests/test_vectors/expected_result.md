@@ -1,67 +1,38 @@
-# 테스트 예상 결과
+﻿# 5차 테스트 검증 결과
 
-## 1. 테스트 개요
+## 테스트 개요
 
-이 문서는 안전한 복호화 demo의 현재 dummy 테스트 벡터 검증 결과를 정리한다.
+5차 작업에서는 `safe_test_encrypt.py`, `rhysida_file_parser.py`, `recovery_demo.py`를 연결하여 안전한 dummy 파일 기반 암호화/복호화 파이프라인을 검증하였다.
 
-이번 테스트는 AES-CTR로 암호화한 dummy 파일을 `recovery_demo.py`로 복호화할 수 있는지 확인하는 것을 목적으로 한다. 복호화에 필요한 AES key, IV, 원본 SHA-256은 테스트 전용 footer metadata에 저장되어 있다.
+## 실행 명령
 
-## 2. 테스트 파일
+```bash
+python3 src/safe_test_encrypt.py tests/test_vectors/sample_plain.txt --force
+python3 src/rhysida_file_parser.py tests/test_vectors/sample_plain.txt.rhysida --include-ciphertext -o tests/test_vectors/parser_result.json
+python3 src/recovery_demo.py tests/test_vectors/sample_plain.txt.rhysida -o tests/test_vectors/recovered_5th.txt --json
+```
 
-| 항목 | 파일 |
+## 파일별 역할
+
+| 파일 | 역할 |
 | --- | --- |
-| 원본 dummy 파일 | `docs/tests/test_vectors/sample_plain.txt` |
-| dummy 암호화 파일 | `docs/tests/test_vectors/sample_plain.txt.rhysida` |
-| 복구 결과 파일 | `docs/tests/test_vectors/recovered_sample_plain.txt` |
-| 복호화 모듈 | `docs/src/recovery_demo.py` |
+| `tests/test_vectors/sample_plain.txt` | 원본 dummy 파일 |
+| `tests/test_vectors/sample_plain.txt.rhysida` | 테스트용 AES-CTR 암호화 파일 |
+| `tests/test_vectors/parser_result.json` | parser가 추출한 footer metadata 및 본문 정보 |
+| `tests/test_vectors/recovered_5th.txt` | 복호화 결과 파일 |
 
-## 3. SHA-256 값
+## SHA-256 검증 결과
 
 | 항목 | SHA-256 |
 | --- | --- |
-| 원본 파일 | `f2ae3733f6cc2d29ca43ab2ffaf50eb38a461ff31015a703f310a8a97bf7a429` |
-| 복구 결과 파일 | `f2ae3733f6cc2d29ca43ab2ffaf50eb38a461ff31015a703f310a8a97bf7a429` |
-| footer가 포함된 dummy 암호화 파일 | `3d17081ba1c8db0b0eb53b793c7477f8f33e64699274efd4b61c8119c3b86352` |
-| footer를 제외한 암호화 본문 | `431795363a665756b4b7dbf231b0c83019d96e005f4faa5cc04d1fe61892480e` |
+| 원본 파일 | `aa0ca76da0b2cb4a23a7f432d5a28635fe0cfa251934e65ff5568c7e4616af7a` |
+| 암호화 본문 | `2f3c932527a58793032d595289d77d247672d77646bf60adad07e4a3edf02a7e` |
+| 복구 결과 파일 | `aa0ca76da0b2cb4a23a7f432d5a28635fe0cfa251934e65ff5568c7e4616af7a` |
 
-## 4. 실행 명령
+## 확인 결과
 
-프로젝트 루트에서 다음 명령을 실행한다.
+`recovery_demo.py` 실행 결과 `verified: true`를 확인하였다. 따라서 현재 dummy 테스트 벡터 기준으로 AES-CTR 암호화, footer parsing, AES-CTR 복호화, SHA-256 검증 흐름이 정상적으로 연결되었다.
 
-```bash
-python3 docs/src/recovery_demo.py docs/tests/test_vectors/sample_plain.txt.rhysida --json
-```
+## 한계
 
-기본 출력 파일이 이미 존재하면 다음처럼 다른 출력 경로를 지정한다.
-
-```bash
-python3 docs/src/recovery_demo.py docs/tests/test_vectors/sample_plain.txt.rhysida -o docs/tests/test_vectors/recovered_wsl_test.txt --json
-```
-
-## 5. 확인된 결과
-
-`recovery_demo.py` 실행 결과 다음 검증 결과를 확인하였다.
-
-```json
-{
-  "recovered_sha256": "f2ae3733f6cc2d29ca43ab2ffaf50eb38a461ff31015a703f310a8a97bf7a429",
-  "expected_sha256": "f2ae3733f6cc2d29ca43ab2ffaf50eb38a461ff31015a703f310a8a97bf7a429",
-  "verified": true,
-  "bytes_recovered": 111
-}
-```
-
-## 6. 해석
-
-현재 dummy 테스트 벡터를 통해 다음 사항을 확인하였다.
-
-- 프로젝트 전용 테스트 footer를 읽을 수 있다.
-- footer metadata에서 AES key와 IV를 추출할 수 있다.
-- 암호화된 본문을 AES-CTR로 복호화할 수 있다.
-- 복구 결과를 별도 파일로 저장할 수 있다.
-- 원본 SHA-256과 복구 결과 SHA-256을 비교해 복호화 성공 여부를 검증할 수 있다.
-
-## 7. 남은 작업
-
-이번 결과는 `recovery_demo.py`의 단독 검증 결과이다. `safe_test_encrypt.py`, `rhysida_file_parser.py`와 연결한 전체 파이프라인 통합 검증은 아직 완료되지 않았다. 해당 모듈이 준비되면 동일한 SHA-256 기준으로 end-to-end 검증을 수행할 예정이다.
-
+이 결과는 프로젝트에서 직접 만든 dummy 파일과 테스트용 footer 구조를 대상으로 한 검증이다. 실제 피해 파일 복구를 보장하지 않으며, 실제 악성 행위나 디렉토리 순회 기능은 포함하지 않는다.
