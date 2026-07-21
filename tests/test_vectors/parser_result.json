@@ -1,0 +1,20 @@
+{
+  "input": "tests/test_vectors/sample_plain.txt.rhysida",
+  "file_size": 606,
+  "ciphertext_offset": 0,
+  "ciphertext_size": 106,
+  "footer_offset": 106,
+  "footer_size": 500,
+  "metadata": {
+    "aes_iv": "cb9f750846b360987d7c2735e18b2626",
+    "aes_key": "9547a0083143e902449c35550807e9e320d3e17980f07e79e4aae4e1b7fec527",
+    "ciphertext_sha256": "2f3c932527a58793032d595289d77d247672d77646bf60adad07e4a3edf02a7e",
+    "format": "ASC_RHYSIDA_TEST_FOOTER_V1",
+    "note": "safe dummy AES-CTR test vector for ASC project only",
+    "original_name": "sample_plain.txt",
+    "plaintext_sha256": "aa0ca76da0b2cb4a23a7f432d5a28635fe0cfa251934e65ff5568c7e4616af7a",
+    "plaintext_size": 106
+  },
+  "ciphertext_sha256": "2f3c932527a58793032d595289d77d247672d77646bf60adad07e4a3edf02a7e",
+  "ciphertext_hex": "e854f578b2c0da4fb548c33199069262fdb11c35275351cd4695ace5d1ec5ed28d5aa61d8539948cac2cf31b0a4ef62aca58f8e45c63de8686e8c1ce4c8f436aaea0890e2cfc5b5e2aabac3713bfa6a0da930dc4db705185dcb78e59b3074c09e8c7c63511aecc4913fc"
+}
