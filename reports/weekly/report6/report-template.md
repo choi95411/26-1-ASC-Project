@@ -1,7 +1,7 @@
 ---
 project_name: "프로젝트명"
 quad_name: "A조"
-members: ["학번_이름1", "학번_이름2", "학번_이름3", "학번_이름4"]
+members: ["학번_이름1", "학번_이름2", "학번_이름3", "20261619_안시후"]
 report_number: 1          # 격주 보고 회차 (1~8)
 date: "2026-04-01"
 status: "진행 중"          # 시작 전 / 진행 중 / 보류 / 완료
@@ -19,9 +19,9 @@ contributions:            # 팀원별 기여도 (합계 100%)
     role: "담당 역할"
     tasks: "구체적으로 수행한 작업"
     percentage: 25
-  - name: "학번_이름4"
-    role: "담당 역할"
-    tasks: "구체적으로 수행한 작업"
+  - name: "20261619_안시후"
+    role: "복호화 툴 개발 / 자동화 파이프라인 구현"
+    tasks: "safe_test_encrypt.py, rhysida_file_parser.py, recovery_demo.py 파이프라인을 대상으로 성공/실패 케이스 6건을 실행하고 결과를 docs/test_cases.md에 문서화"
     percentage: 25
 ---
 
@@ -46,7 +46,7 @@ contributions:            # 팀원별 기여도 (합계 100%)
 | 학번_이름1 | | | | 25% |
 | 학번_이름2 | | | | 25% |
 | 학번_이름3 | | | | 25% |
-| 학번_이름4 | | | | 25% |
+| 2026169_안시후 | 복호화 툴 개발 / 자동화 파이프라인 구현 | 5차에서 연결된 safe_test_encrypt.py, rhysida_file_parser.py, recovery_demo.py 파이프라인을 대상으로 정상 입력뿐 아니라 잘못된 입력, 손상된 footer, 조작된 key 등 예외 상황에서의 동작을 검증하였다. 존재하지 않는 입력 파일, 출력 파일 중복, footer magic 손상, aes_key 길이 오류 등 총 4가지 케이스에서는 각 스크립트가 명확한 에러 메시지와 함께 실행을 중단함을 확인하였다. 반면 metadata의 aes_key 값을 동일한 길이의 다른 값으로 조작한 경우에는 프로그램이 예외를 발생시키지 않고 정상 종료되며, SHA-256 검증 필드(verified: false)로만 실패가 드러난다는 점을 확인하였다. 이를 통해 파이프라인의 실질적인 무결성 검증 지점이 SHA-256 대조 단계 하나뿐이라는 한계를 파악하였고, 성공 1건과 실패 5건의 테스트 결과를 실행 명령, 출력 로그, exit code와 함께 docs/test_cases.md에 문서화하였다. | [test_cases.md](https://github.com/choi95411/26-1-ASC-Project/blob/main/docs/test_cases.md) | 25% |
 
 ## 이슈 및 해결 방안
 
