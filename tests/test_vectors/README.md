@@ -19,9 +19,11 @@
 ```bash
 python3 src/safe_test_encrypt.py tests/test_vectors/sample_plain.txt --force
 python3 src/rhysida_file_parser.py tests/test_vectors/sample_plain.txt.rhysida --include-ciphertext -o tests/test_vectors/parser_result.json
-python3 src/recovery_demo.py tests/test_vectors/sample_plain.txt.rhysida -o tests/test_vectors/recovered_5th.txt --json
+python3 src/recovery_demo.py tests/test_vectors/sample_plain.txt.rhysida -o tests/test_vectors/recovered_demo.txt --json
 ```
 
 ## 성공 기준
 
 복구 결과의 `verified` 값이 `true`이고, 원본 파일 SHA-256과 복구 결과 SHA-256이 일치하면 성공으로 판단한다.
+
+`safe_test_encrypt.py`는 실행할 때마다 새로운 AES key와 IV를 생성하므로 `.rhysida` 파일과 암호화 본문 SHA-256은 재실행 시 달라질 수 있다.
